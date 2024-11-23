@@ -1,0 +1,129 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="task-detail">
+    <div class="task-content">
+      {% if task.image %}
+        <div class="task-image">
+          <img src="{{ task.image.url }}" alt="{{ task.title }}" class="img-fluid">
+        </div>
+      {% endif %}
+      <div class="task-info">
+        <h1>{{ task.title }}</h1>
+        <p><strong>Дата и время:</strong> {{ task.event_date|date:"d.m.Y H:i" }}</p>
+        <p><strong>Место:</strong> {{ task.location }}</p>
+        <p><strong>Описание:</strong> {{ task.task }}</p>
+        {% if task.price %}
+          <p><strong>Цена билета:</strong> {{ task.price }} руб.</p>
+        {% endif %}
+        <div class="task-button">
+          <a href="#" class="btn btn-primary buy-ticket-btn">Купить билет</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block styles %}
+  <style>
+    /* Темная тема */
+    body {
+      background-color: #121212;  /* Темный фон */
+      color: #e0e0e0;  /* Светлый текст */
+      font-family: 'Roboto', sans-serif; /* Современный шрифт */
+    }
+
+    .task-detail {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #1e1e1e;  /* Темный фон блока */
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .task-content {
+      display: flex;
+      flex-wrap: wrap; /* Адаптивное размещение */
+      gap: 20px; /* Расстояние между изображением и текстом */
+    }
+
+    .task-image {
+      flex: 1;
+    }
+
+    .task-image img {
+      width: 100%;  /* Изображение займет весь блок */
+      max-width: 350px; /* Максимальная ширина для ограничения */
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .task-info {
+      flex: 2;
+    }
+
+    .task-info h1 {
+      font-size: 2em; /* Уменьшенный заголовок */
+      margin-bottom: 15px;
+      color: #ffffff; /* Белый цвет для заголовка */
+    }
+
+    .task-info p {
+      font-size: 0.9em; /* Меньший размер текста */
+      margin-bottom: 10px;
+      line-height: 1.5; /* Межстрочный интервал для читабельности */
+      color: #cfcfcf; /* Светло-серый цвет текста */
+    }
+
+    .task-info strong {
+      color: #f2f2f2; /* Акцент на важной информации */
+      font-weight: 500;
+    }
+
+    /* Кнопка "Купить билет" */
+    .task-button {
+      margin-top: 20px;
+    }
+
+    .buy-ticket-btn {
+      font-size: 1em;
+      font-weight: 500;
+      color: #ffffff;
+      background: linear-gradient(45deg, #ff6f61, #ff9966);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .buy-ticket-btn:hover {
+      background: linear-gradient(45deg, #ff9966, #ff6f61);
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      text-decoration: none;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .task-content {
+        flex-direction: column; /* Вертикальное размещение на маленьких экранах */
+      }
+      .task-image img {
+        max-width: 100%; /* Изображение занимает всю ширину */
+      }
+      .task-info h1 {
+        text-align: center;
+      }
+      .task-info p {
+        text-align: center;
+      }
+      .task-button {
+        text-align: center;
+      }
+    }
+  </style>
+{% endblock %}

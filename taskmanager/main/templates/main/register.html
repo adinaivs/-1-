@@ -1,0 +1,58 @@
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Регистрация</h2>
+      <form method="POST" class="bg-light p-4 rounded shadow-sm">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+          {{ form.username.label_tag(attrs={'class': 'form-label'}) }}
+          {{ form.username }}
+          {% if form.username.errors %}
+          <div class="text-danger small">
+            {{ form.username.errors|join:', ' }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group mb-3">
+          {{ form.email.label_tag(attrs={'class': 'form-label'}) }}
+          {{ form.email }}
+          {% if form.email.errors %}
+          <div class="text-danger small">
+            {{ form.email.errors|join:', ' }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group mb-3">
+          {{ form.password1.label_tag(attrs={'class': 'form-label'}) }}
+          {{ form.password1 }}
+          {% if form.password1.errors %}
+          <div class="text-danger small">
+            {{ form.password1.errors|join:', ' }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group mb-3">
+          {{ form.password2.label_tag(attrs={'class': 'form-label'}) }}
+          {{ form.password2 }}
+          {% if form.password2.errors %}
+          <div class="text-danger small">
+            {{ form.password2.errors|join:', ' }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group mb-3">
+          {{ form.role.label_tag(attrs={'class': 'form-label'}) }}
+          {{ form.role }}
+          {% if form.role.errors %}
+          <div class="text-danger small">
+            {{ form.role.errors|join:', ' }}
+          </div>
+          {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
